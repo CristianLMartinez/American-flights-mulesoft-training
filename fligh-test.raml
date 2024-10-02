@@ -1,0 +1,79 @@
+#%RAML 1.0
+version: v1
+title: American Flights API
+
+traits:
+  client-id-required: !include traits/client-id-required.raml
+  errorResponses: !include traits/error-handling.raml
+  
+types: 
+  AmericanFlight: !include exchange_modules/15b67673-84fd-441f-bd15-8e0a5b8e0adc/american-flights-data-type/1.0.1/american-flights-data-type.raml
+  ErrorResponse: !include data-types/ErrorResponseDataType.raml
+
+/flights:
+  is: [client-id-required, errorResponses]
+  get:
+    description: Retrieves a list of available flights. Filters the flights by destination if a query parameter is provided.
+    queryParameters:
+      destination:
+        required: false
+        enum:
+          - SFO
+          - LAX
+          - CLE
+        description: Filter flights by destination. Valid values are SFO, LAX, or CLE.
+    responses:
+      200:
+        description: Successful retrieval of flights.
+        body:
+          application/json:
+            type: AmericanFlight[]
+            examples:
+              output: !include examples/AmericanFlightExample.raml
+
+  post:
+    is: [errorResponses]
+    description: Adds a new flight to the system.
+    responses:
+      201:
+        description: The flight was successfully created.
+        body:
+          application/json:
+            type: AmericanFlight
+            example: !include examples/AmericanFlightNoIDExample.raml
+  
+
+  /{ID}:
+    is: [errorResponses]
+    get:
+      is: [errorResponses]
+      description: Retrieves details of a specific flight by ID.
+      responses:
+        200:
+          description: Successful retrieval of the flight.
+          body:
+            application/json:
+              type: AmericanFlight
+              example: !include examples/AmericanFlightIDExample.raml
+    
+    delete:
+      is: [errorResponses]
+      description: Deletes a specific flight by ID.
+      responses:
+        204:
+          description: Flight was successfully deleted.
+      
+    put:
+      is: [errorResponses]
+      description: Updates the details of a specific flight by ID.
+      body:
+        application/json:
+          type: AmericanFlight
+      responses:
+        200:
+          description: Flight was successfully updated.
+          body:
+            application/json:
+              type: AmericanFlight
+              example: !include examples/AmericanFlightIDExample.raml
+      

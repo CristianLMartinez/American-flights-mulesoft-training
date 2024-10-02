@@ -1,0 +1,37 @@
+#%RAML 1.0 Trait
+
+description: Defines common error responses (400, 404, 500).
+responses:
+  400:
+    description: Bad request, typically due to invalid input.
+    body:
+      application/json:
+        type: ErrorResponse
+        example: |
+          {
+            "code": 400,
+            "message": "Invalid request data",
+            "details": "Some required fields are missing or invalid."
+          }
+  404:
+    description: Resource not found.
+    body:
+      application/json:
+        type: ErrorResponse
+        example: |
+          {
+            "code": 404,
+            "message": "Not Found",
+            "details": "The specified resource was not found."
+          }
+  500:
+    description: Internal server error.
+    body:
+      application/json:
+        type: ErrorResponse
+        example: |
+          {
+            "code": 500,
+            "message": "Internal Server Error",
+            "details": "An unexpected error occurred."
+          }

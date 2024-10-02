@@ -1,0 +1,21 @@
+{
+  "dependencies": [
+    {
+      "version": "1.0.1",
+      "assetId": "american-flights-data-type",
+      "groupId": "15b67673-84fd-441f-bd15-8e0a5b8e0adc",
+      "provided": false
+    }
+  ],
+  "version": "2.0.0",
+  "originalFormatVersion": "1.0",
+  "apiVersion": "v2",
+  "descriptorVersion": "1.0.0",
+  "classifier": "raml",
+  "main": "fligh-test.raml",
+  "assetId": "fligh-test",
+  "groupId": "15b67673-84fd-441f-bd15-8e0a5b8e0adc",
+  "organizationId": "15b67673-84fd-441f-bd15-8e0a5b8e0adc",
+  "name": "American-flight-training-api",
+  "tags": []
+}

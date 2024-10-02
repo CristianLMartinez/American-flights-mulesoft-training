@@ -1,0 +1,14 @@
+#%RAML 1.0 DataType
+
+type: object
+description: Generic structure for error responses
+properties:
+  code: 
+    description: A unique error code to identify the type of error.
+    type: integer
+  message: 
+    description: A brief message describing the error.
+    type: string
+  details:
+    description: Additional details about the error, if available.
+    type: string
